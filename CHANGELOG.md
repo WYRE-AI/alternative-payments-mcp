@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/wyre-technology/alternative-payments-mcp/compare/v1.0.3...v1.0.4) (2026-07-04)
+
+
+### Bug Fixes
+
+* **security:** request-scoped credentials via AsyncLocalStorage to close cross-tenant leak ([#7](https://github.com/wyre-technology/alternative-payments-mcp/issues/7)) ([a6b05ce](https://github.com/wyre-technology/alternative-payments-mcp/commit/a6b05ceb3cda7ebe30d423e2cc293aae1ac0662c))
+
 ## [1.0.3](https://github.com/wyre-technology/alternative-payments-mcp/compare/v1.0.2...v1.0.3) (2026-06-12)
 
 
