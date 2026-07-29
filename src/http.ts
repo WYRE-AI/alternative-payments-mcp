@@ -2,6 +2,7 @@ import { createServer as createHttpServer } from 'node:http';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { createServer } from './server.js';
 import { getCredentials, runWithCredentials } from './utils/client.js';
+import { runWithServerRef } from './utils/server-ref.js';
 import { logger } from './utils/logger.js';
 import type { Environment } from '@wyre-technology/node-alternative-payments';
 
@@ -46,32 +47,40 @@ function startHttpServer(): void {
       // transport (sessionIdGenerator set, persistent stream) would let a
       // long-lived connection serve later messages under a stale/foreign
       // credential context — re-review tenant isolation before changing this.
-      const transport = new StreamableHTTPServerTransport({
-        sessionIdGenerator: undefined,
-        enableJsonResponse: true,
-      });
+      //
+      // The whole chain below (transport creation through the catch block)
+      // runs inside runWithServerRef so the server-ref binding — used by
+      // elicitation for destructive-action confirmation — survives every
+      // await gap in this request's lifecycle without leaking into a
+      // concurrent request's server-ref.
+      return runWithServerRef(server, async () => {
+        const transport = new StreamableHTTPServerTransport({
+          sessionIdGenerator: undefined,
+          enableJsonResponse: true,
+        });
 
-      res.on('close', () => {
-        transport.close();
-        server.close();
-      });
+        res.on('close', () => {
+          transport.close();
+          server.close();
+        });
 
-      try {
-        await server.connect(transport);
-        await transport.handleRequest(req, res);
-      } catch (err) {
-        logger.error('MCP transport error', { error: (err as Error).message });
-        if (!res.headersSent) {
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(
-            JSON.stringify({
-              jsonrpc: '2.0',
-              error: { code: -32603, message: 'Internal error' },
-              id: null,
-            }),
-          );
+        try {
+          await server.connect(transport);
+          await transport.handleRequest(req, res);
+        } catch (err) {
+          logger.error('MCP transport error', { error: (err as Error).message });
+          if (!res.headersSent) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(
+              JSON.stringify({
+                jsonrpc: '2.0',
+                error: { code: -32603, message: 'Internal error' },
+                id: null,
+              }),
+            );
+          }
         }
-      }
+      });
     };
 
     if (isGatewayMode) {

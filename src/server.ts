@@ -6,7 +6,6 @@ import {
 import { DOMAINS, getNavigationTools } from './domains/navigation.js';
 import { getDomainHandler } from './domains/index.js';
 import { getCredentials } from './utils/client.js';
-import { setServerRef } from './utils/server-ref.js';
 import { logger } from './utils/logger.js';
 import type { DomainName } from './utils/types.js';
 
@@ -16,8 +15,10 @@ export function createServer(): Server {
     { capabilities: { tools: {}, logging: {} } },
   );
 
-  // Expose the server for elicitation (destructive-action confirmation).
-  setServerRef(server);
+  // The caller owns binding this server into server-ref.ts's scope now
+  // (bindServerRef for stdio's single session, runWithServerRef wrapping
+  // the whole per-request chain for HTTP) — createServer() itself stays
+  // side-effect-free with respect to server-ref.
 
   // Return ALL tools upfront — navigation is a stateless discovery aid.
   server.setRequestHandler(ListToolsRequestSchema, async () => {
