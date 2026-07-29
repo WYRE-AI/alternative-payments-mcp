@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/wyre-technology/alternative-payments-mcp/compare/v1.0.4...v1.0.5) (2026-07-29)
+
+
+### Bug Fixes
+
+* **security:** close cross-tenant server-ref misroute via AsyncLocalStorage ([#15](https://github.com/wyre-technology/alternative-payments-mcp/issues/15)) ([388483f](https://github.com/wyre-technology/alternative-payments-mcp/commit/388483f892399e731a399f8abf19834985dfddf3)), closes [#4](https://github.com/wyre-technology/alternative-payments-mcp/issues/4) [#2](https://github.com/wyre-technology/alternative-payments-mcp/issues/2)
+
 ## [1.0.4](https://github.com/wyre-technology/alternative-payments-mcp/compare/v1.0.3...v1.0.4) (2026-07-04)
 
 
