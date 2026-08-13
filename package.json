@@ -35,7 +35,7 @@
     "url": "git+https://github.com/wyre-technology/alternative-payments-mcp.git"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "@wyre-technology/node-alternative-payments": "^1.0.0"
   },
   "devDependencies": {
