@@ -1,5 +1,5 @@
 {
-  "name": "alternative-payments-mcp",
+  "name": "@wyre-ai/alternative-payments-mcp",
   "version": "1.0.5",
   "description": "MCP server for Alternative Payments — customers, invoices, payment requests, payouts, and webhooks (read + safe writes)",
   "type": "module",
@@ -32,7 +32,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wyre-technology/alternative-payments-mcp.git"
+    "url": "git+https://github.com/WYRE-AI/alternative-payments-mcp.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",

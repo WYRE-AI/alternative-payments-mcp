@@ -8,7 +8,7 @@ ARG NODE_AUTH_TOKEN
 
 WORKDIR /app
 
-# Copy package files and .npmrc for GitHub Packages auth (the @wyre-technology
+# Copy package files and .npmrc for GitHub Packages auth (the @wyre-ai
 # SDK is public, but npm.pkg.github.com still requires a token to download).
 COPY package*.json .npmrc ./
 
@@ -61,14 +61,14 @@ ARG VERSION="unknown"
 ARG COMMIT_SHA="unknown"
 ARG BUILD_DATE="unknown"
 
-LABEL io.modelcontextprotocol.server.name="io.github.wyre-technology/alternative-payments-mcp"
+LABEL io.modelcontextprotocol.server.name="io.github.WYRE-AI/alternative-payments-mcp"
 LABEL maintainer="engineering@wyre.ai"
 LABEL org.opencontainers.image.title="alternative-payments-mcp"
 LABEL org.opencontainers.image.description="Model Context Protocol server for the Alternative Payments API"
 LABEL org.opencontainers.image.version="${VERSION}"
 LABEL org.opencontainers.image.created="${BUILD_DATE}"
 LABEL org.opencontainers.image.revision="${COMMIT_SHA}"
-LABEL org.opencontainers.image.source="https://github.com/wyre-technology/alternative-payments-mcp"
-LABEL org.opencontainers.image.documentation="https://github.com/wyre-technology/alternative-payments-mcp/blob/main/README.md"
+LABEL org.opencontainers.image.source="https://github.com/WYRE-AI/alternative-payments-mcp"
+LABEL org.opencontainers.image.documentation="https://github.com/WYRE-AI/alternative-payments-mcp/blob/main/README.md"
 LABEL org.opencontainers.image.vendor="Wyre Technology"
 LABEL org.opencontainers.image.licenses="Apache-2.0"

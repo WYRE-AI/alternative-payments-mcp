@@ -7,7 +7,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that g
 assistants **read + safe-write** access to [Alternative Payments](https://www.alternativepayments.io/) —
 customers, invoices, payment requests, transactions, payouts, and webhooks.
 
-> Maintained by [Wyre Technology](https://github.com/wyre-technology).
+> Maintained by [Wyre Technology](https://github.com/WYRE-AI).
 
 ## Capabilities
 
@@ -46,7 +46,7 @@ The server exchanges these for a bearer token automatically and refreshes it bef
 claude mcp add alternative-payments \
   -e ALTERNATIVE_PAYMENTS_CLIENT_ID=your-client-id \
   -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET=your-client-secret \
-  -- npx -y github:wyre-technology/alternative-payments-mcp
+  -- npx -y github:WYRE-AI/alternative-payments-mcp
 ```
 
 **Docker (HTTP transport, gateway mode):**
@@ -57,7 +57,7 @@ docker run --rm -p 8080:8080 \
   -e MCP_TRANSPORT=http \
   -e ALTERNATIVE_PAYMENTS_CLIENT_ID=... \
   -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET=... \
-  ghcr.io/wyre-technology/alternative-payments-mcp:latest
+  ghcr.io/wyre-ai/alternative-payments-mcp:latest
 ```
 
 ## Transports
