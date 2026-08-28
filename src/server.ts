@@ -69,7 +69,7 @@ export function createServer(): Server {
                 connected: !!creds,
                 environment: creds?.environment ?? null,
                 domains: DOMAINS,
-                status: 'All tools available, no domain selected',
+                status: 'Call conduit__my_access to see which tools are available to you.',
               },
               null,
               2,
@@ -108,7 +108,7 @@ export function createServer(): Server {
       content: [
         {
           type: 'text' as const,
-          text: `Unknown tool: ${name}. Use ap_navigate to discover available tools.`,
+          text: `Unknown tool: ${name}. Call conduit__my_access to see which tools are available to you.`,
         },
       ],
       isError: true,
