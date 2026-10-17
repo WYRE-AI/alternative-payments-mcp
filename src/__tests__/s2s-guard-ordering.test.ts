@@ -24,6 +24,7 @@
  */
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createHmac } from 'node:crypto';
+import type { Server } from 'node:http';
 
 const TEST_HOST = '127.0.0.1';
 const TEST_PORT = 47521;
@@ -47,6 +48,7 @@ const GATEWAY_HEADERS = {
 let realFetch: typeof fetch;
 let tokenCalls = 0;
 let dataCalls = 0;
+let httpServer: Server;
 
 function installFetchStub(): void {
   tokenCalls = 0;
@@ -111,12 +113,17 @@ beforeAll(async () => {
   process.env.MCP_HTTP_HOST = TEST_HOST;
   process.env.CONDUIT_S2S_SECRET = TEST_S2S_SECRET;
 
-  await import('../http.js');
+  const { startHttpServer } = await import('../http.js');
+  httpServer = await startHttpServer();
   await waitForServerReady();
 });
 
-afterAll(() => {
+afterAll(async () => {
   global.fetch = realFetch;
+  if (!httpServer) return;
+  await new Promise<void>((resolve, reject) => {
+    httpServer.close((err) => (err ? reject(err) : resolve()));
+  });
 });
 
 beforeEach(() => {
