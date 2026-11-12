@@ -2,7 +2,7 @@
 
 ### Security
 
-* **deps:** patch HIGH/CRITICAL Trivy findings (`@modelcontextprotocol/sdk`, `fast-uri`, `ip-address`, `proxy-addr`, `express-rate-limit`) via lockfile update; remove the bundled npm CLI from the production image.
+* **deps:** patch HIGH/CRITICAL Trivy findings (`@modelcontextprotocol/sdk`, `fast-uri`, `ip-address`, `proxy-addr`, `express-rate-limit`) via lockfile update.
 
 ## [1.0.5](https://github.com/WYRE-AI/alternative-payments-mcp/compare/v1.0.4...v1.0.5) (2026-07-29)
 
